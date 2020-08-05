@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Cadastro de Pessoa</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h1>Cadastrando Pessoa</h1>
+
+		<h:commandButton value="Pessoas Cadastradas" action="segundapage"></h:commandButton>
+
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Nome: "></h:outputLabel>
+			<h:inputText id="campoNome" value="#{pessoaBean.pessoa.nome}"></h:inputText>
+
+			<h:outputLabel value="Sobrenome: "></h:outputLabel>
+			<h:inputText id="campoSobrenome" value="#{pessoaBean.pessoa.sobrenome}"></h:inputText>
+
+			<h:outputLabel value="Idade: "></h:outputLabel>
+			<h:inputText id="campoIdade" value="#{pessoaBean.pessoa.idade}"></h:inputText>
+
+
+			<h:outputLabel value="Senha: "></h:outputLabel>
+			<h:inputSecret id="campoSenha" value="#{pessoaBean.pessoa.senha}"></h:inputSecret>
+		</h:panelGrid>
+
+		<h:commandButton value="Cadastrar" action="#{pessoaBean.salvar}" />
+		<h:commandButton value="Atualizar Cadastro" action="#{pessoaBean.atualizar}" />
+		
+		<h1>Lista de Pessoas</h1>
+	<h:dataTable border="1" value="#{pessoaBean.pessoas}" var="pessoa">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{pessoa.id} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{pessoa.nome} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Sobrenome</f:facet>
+				<h:outputText value="#{pessoa.sobrenome} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Idade</f:facet>
+				<h:outputText value="#{pessoa.idade} " />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Senha</f:facet>
+				<h:outputText value="#{pessoa.senha} " />
+			</h:column>
+			<h:column>
+			<f:facet name="header">Ações</f:facet>
+				<h:commandButton value="Alterar" action="#{pessoaBean.preparaAtualizar(pessoa)}"/>
+				<h:commandButton value="Remover" action="#{pessoaBean.remover(pessoa)}"/>
+			</h:column>		
+		</h:dataTable>
+	</h:form>
+</h:body>
+
+</html>
